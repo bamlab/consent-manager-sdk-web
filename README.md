@@ -4,9 +4,11 @@
 
 ### Setup
 
-`npm install consent-manager-sdk-web`
+`npm install consent-manager-js-sdk`
+
 or
-`yarn add consent-manager-sdk-web`
+
+`yarn add consent-manager-js-sdk`
 
 ### Methods
 
