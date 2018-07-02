@@ -1,3 +1,12 @@
+var ask = function() {
+  var formIFrame = document.createElement('iframe')
+  formIFrame.setAttribute(
+    'src',
+    'https://consent-form-www.devc.cloud.ogury.io/'
+  )
+  formIFrame.setAttribute('class', 'cmjs-form')
+  document.body.appendChild(formIFrame)
+}
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
@@ -16,8 +25,6 @@
   // This example returns an object, but the module
   // can return a function as the exported value.
   return {
-    ask: function() {
-      alert('ALERT MESSAGE')
-    },
+    ask,
   }
 })
