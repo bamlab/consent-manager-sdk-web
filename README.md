@@ -20,12 +20,13 @@ Copy-paste the following lines into the `head` of your `index.html` :
     top: 10%;
     left: 10%;
     position: fixed;
+    background-color: white;
     }
 </style>
 ```
 
 ### Methods
 
-`ask(): affiche une alerte dans le navigateur`
+`ask(): affiche le formulaire dans une modale`
 
 ##
