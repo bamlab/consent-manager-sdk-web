@@ -1,6 +1,6 @@
 {
   "name": "consent-manager-js-sdk",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A web SDK to easily setup the Ogury consent manager on your web front",
   "main": "index.js",
   "scripts": {
