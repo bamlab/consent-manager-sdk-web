@@ -1,10 +1,44 @@
+var checkOrigin = function(origin) {
+  var allowedURLs = [
+    'https://consent-form-www.devc.cloud.ogury.io',
+    'https://consent-form-www.staging.cloud.ogury.io',
+  ]
+  return allowedURLs.reduce(function(acc, currentURL) {
+    return acc || origin === currentURL
+  }, false)
+}
+
+var checkData = function(data) {
+  return data.consent !== undefined
+}
+
+var onMessageReceived = function(event) {
+  if (!checkOrigin(event.origin) || !checkData(event.data)) {
+    return
+  }
+  var consentResult = JSON.parse(decodeURI(event.data.consent))
+  console.log('JSON CONSENT', consentResult)
+}
+
+var loadIFrame = function() {
+  var iframe = document.createElement('iframe')
+  iframe.setAttribute('src', 'https://consent-form-www.devc.cloud.ogury.io')
+  iframe.setAttribute('class', 'cmjs-form')
+  return iframe
+}
+
+var setMessageHandler = function(iframe) {
+  iframe.onload = function() {
+    window.addEventListener('message', onMessageReceived)
+  }
+  iframe.onbeforeunload = function() {
+    window.removeEventListener('message', onMessageReceived)
+  }
+}
+
 var ask = function() {
-  var formIFrame = document.createElement('iframe')
-  formIFrame.setAttribute(
-    'src',
-    'https://consent-form-www.devc.cloud.ogury.io/'
-  )
-  formIFrame.setAttribute('class', 'cmjs-form')
+  var formIFrame = loadIFrame()
+  setMessageHandler(formIFrame)
   document.body.appendChild(formIFrame)
 }
 ;(function(root, factory) {
